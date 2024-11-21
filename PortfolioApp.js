@@ -1,6 +1,6 @@
 import React from 'react';
 import { FileText, Image, Box, DollarSign, Lightbulb, Users } from 'lucide-react';
-import * as Tabs from '@radix-ui/react-tabs';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 
 const getTreatHolderData = () => ({
   measurements: {
@@ -51,15 +51,15 @@ const PortfolioApp = () => {
 
   return (
     <div className="w-full max-w-4xl mx-auto p-4 bg-white">
-      <div className="card text-center mb-6">
+      <div className="text-center mb-6">
         <h1 className="text-3xl font-bold text-gray-800">Service Dog Treat Holder Portfolio</h1>
         <p className="text-gray-600">A PLA-based design optimized for service dog handlers</p>
       </div>
 
-      <Tabs.Root defaultValue="design" className="w-full">
-        <Tabs.List className="flex space-x-2 border-b border-gray-200 mb-4">
+      <Tabs defaultValue="design" className="w-full">
+        <TabsList className="flex space-x-2 border-b border-gray-200 mb-4">
           {tabData.map(({ value, Icon, label }) => (
-            <Tabs.Trigger
+            <TabsTrigger
               key={value}
               value={value}
               className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 data-[state=active]:text-blue-600 data-[state=active]:border-b-2 data-[state=active]:border-blue-600"
@@ -68,11 +68,11 @@ const PortfolioApp = () => {
                 <Icon className="w-4 h-4" />
                 <span>{label}</span>
               </div>
-            </Tabs.Trigger>
+            </TabsTrigger>
           ))}
-        </Tabs.List>
+        </TabsList>
 
-        <Tabs.Content value="design" className="p-4 border rounded-lg">
+        <TabsContent value="design" className="p-4 border rounded-lg">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <h3 className="text-xl font-semibold">Key Features</h3>
@@ -93,9 +93,9 @@ const PortfolioApp = () => {
               </ul>
             </div>
           </div>
-        </Tabs.Content>
+        </TabsContent>
 
-        <Tabs.Content value="audience" className="p-4 border rounded-lg">
+        <TabsContent value="audience" className="p-4 border rounded-lg">
           <div className="space-y-6">
             <div>
               <h3 className="text-xl font-semibold mb-4">Target Users</h3>
@@ -107,9 +107,9 @@ const PortfolioApp = () => {
               </ul>
             </div>
           </div>
-        </Tabs.Content>
+        </TabsContent>
 
-        <Tabs.Content value="materials" className="p-4 border rounded-lg">
+        <TabsContent value="materials" className="p-4 border rounded-lg">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <h3 className="text-xl font-semibold mb-4">PLA Properties</h3>
@@ -130,9 +130,9 @@ const PortfolioApp = () => {
               </ul>
             </div>
           </div>
-        </Tabs.Content>
+        </TabsContent>
 
-        <Tabs.Content value="technical" className="p-4 border rounded-lg">
+        <TabsContent value="technical" className="p-4 border rounded-lg">
           <div className="space-y-6">
             <h3 className="text-xl font-semibold">Technical Specifications</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -144,9 +144,9 @@ const PortfolioApp = () => {
               </div>
             </div>
           </div>
-        </Tabs.Content>
+        </TabsContent>
 
-        <Tabs.Content value="build" className="p-4 border rounded-lg">
+        <TabsContent value="build" className="p-4 border rounded-lg">
           <div className="space-y-6">
             <h3 className="text-xl font-semibold mb-4">Build Measurements</h3>
             <table className="w-full border-collapse">
@@ -170,9 +170,9 @@ const PortfolioApp = () => {
               </tbody>
             </table>
           </div>
-        </Tabs.Content>
+        </TabsContent>
 
-        <Tabs.Content value="analysis" className="p-4 border rounded-lg">
+        <TabsContent value="analysis" className="p-4 border rounded-lg">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="p-4 border rounded-lg">
               <h3 className="text-xl font-semibold mb-4">Material Usage</h3>
@@ -193,8 +193,8 @@ const PortfolioApp = () => {
               </ul>
             </div>
           </div>
-        </Tabs.Content>
-      </Tabs.Root>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };
