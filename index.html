@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Service Dog Treat Holder Portfolio - A specialized design for service dog handlers">
+    <title>Service Dog Treat Holder Portfolio</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+
+    <!-- React and ReactDOM CDN -->
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="root">
+        <div class="loading">
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import PortfolioApp from './PortfolioApp.js';
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(React.createElement(PortfolioApp));
+    </script>
+</body>
+</html>
