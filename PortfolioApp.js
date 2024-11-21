@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { FileText, Image, Box, DollarSign, Lightbulb, Users } from 'lucide-react';
 
-
 const PortfolioApp = () => {
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState('design');
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -32,36 +30,7 @@ const PortfolioApp = () => {
     fetchData();
   }, []);
 
-  const calculateDeviation = (design, actual) => {
-    const diff = (actual - design).toFixed(1);
-    return `${diff > 0 ? '+' : ''}${diff}`;
-  };
-
-  const calculateCosts = () => {
-    if (!data) return { material: '0.00', energy: '0.00', total: '0.00' };
-
-    const { pricePerKg, weightUsed, supportMaterial, wasteMaterial, printTime, powerConsumption, electricityRate } = data.costs;
-    const materialCost = ((weightUsed + supportMaterial + wasteMaterial) / 1000) * pricePerKg;
-    const energyCost = printTime * powerConsumption * electricityRate;
-    return {
-      material: materialCost.toFixed(2),
-      energy: energyCost.toFixed(2),
-      total: (materialCost + energyCost).toFixed(2)
-    };
-  };
-
-  const tabData = [
-    { value: 'design', Icon: FileText, label: 'Design' },
-    { value: 'audience', Icon: Users, label: 'Audience' },
-    { value: 'materials', Icon: Lightbulb, label: 'Materials' },
-    { value: 'technical', Icon: Image, label: 'Technical' },
-    { value: 'build', Icon: Box, label: 'Build' },
-    { value: 'analysis', Icon: DollarSign, label: 'Analysis' }
-  ];
-
-  if (loading) return <LoadingSpinner />;
-
-  const costs = calculateCosts();
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">
