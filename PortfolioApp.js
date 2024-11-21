@@ -70,35 +70,30 @@ const PortfolioApp = () => {
           ))}
         </Tabs.List>
 
-        {/* Tab content components */}
-        <div className="tab-content">
-          {/* Design Tab */}
-          <Tabs.Content value="design" className="card">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Content for Design tab */}
+        <Tabs.Content value="design" className="card">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold">Key Features</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>One-handed operation design</li>
+                <li>Quick-access mechanism</li>
+                <li>Secure closure system</li>
+                <li>Ergonomic grip design</li>
+              </ul>
             </div>
-          </Tabs.Content>
-
-          {/* Materials Tab */}
-          <Tabs.Content value="materials" className="card">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Content for Materials tab */}
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold">Handler Benefits</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Improved treat accessibility</li>
+                <li>Reduced training interruptions</li>
+                <li>Enhanced handling efficiency</li>
+                <li>Durable daily use design</li>
+              </ul>
             </div>
-          </Tabs.Content>
+          </div>
+        </Tabs.Content>
 
-          {/* Build Tab */}
-          <Tabs.Content value="build" className="card">
-            <h3 className="text-xl font-semibold mb-4">Dimensional Analysis</h3>
-            {/* Content for Build tab */}
-          </Tabs.Content>
-
-          {/* Analysis Tab */}
-          <Tabs.Content value="analysis" className="card">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Content for Analysis tab */}
-            </div>
-          </Tabs.Content>
-        </div>
+        {/* Add other tab contents similarly */}
       </Tabs.Root>
     </div>
   );
