@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { FileText, Image, Box, DollarSign, Lightbulb, Users } from 'lucide-react';
 
 const LoadingSpinner = () => (
-  <div className="flex justify-center items-center h-screen w-screen bg-[#f5f5f5]">
-    <div className="w-12 h-12 border-4 border-[#f3f3f3] border-t-[#3498db] rounded-full animate-spin" />
+  <div className="flex justify-center items-center h-screen w-screen bg-gray-100">
+    <div className="w-12 h-12 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin" />
   </div>
 );
 
@@ -14,7 +14,6 @@ const PortfolioApp = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // Simulate data fetch
       const result = {
         measurements: {
           height: { design: 120, actual: 119.5 },
@@ -31,7 +30,6 @@ const PortfolioApp = () => {
           electricityRate: 0.12
         }
       };
-
       setData(result);
       setLoading(false);
     };
@@ -71,23 +69,24 @@ const PortfolioApp = () => {
   const costs = calculateCosts();
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] font-sans">
+    <div className="min-h-screen bg-gray-100">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <div className="bg-white rounded-lg shadow p-6 mb-6">
           <h1 className="text-3xl font-bold text-gray-800 text-center">Service Dog Treat Holder Portfolio</h1>
           <p className="text-gray-600 text-center mt-2">A PLA-based design optimized for service dog handlers</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-          <div className="flex space-x-2 p-4 border-b border-gray-200 overflow-x-auto">
+        <div className="bg-white rounded-lg shadow">
+          <div className="flex overflow-x-auto border-b border-gray-200">
             {tabData.map(({ value, Icon, label }) => (
               <button
                 key={value}
                 onClick={() => setActiveTab(value)}
-                className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md transition-colors
-                  ${activeTab === value 
-                    ? 'bg-blue-600 text-white' 
-                    : 'text-gray-600 hover:bg-gray-100'}`}
+                className={`flex items-center gap-2 px-4 py-2 text-sm font-medium ${
+                  activeTab === value 
+                    ? 'text-blue-600 border-b-2 border-blue-600' 
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
               >
                 <Icon className="w-4 h-4" />
                 <span>{label}</span>
@@ -121,7 +120,7 @@ const PortfolioApp = () => {
 
             {activeTab === 'analysis' && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white rounded-lg border p-4">
+                <div className="border rounded-lg p-4">
                   <h3 className="text-xl font-semibold mb-4">Material Usage</h3>
                   <ul className="space-y-2">
                     <li>Primary material: {data.costs.weightUsed}g</li>
@@ -130,7 +129,7 @@ const PortfolioApp = () => {
                     <li>Total material: {data.costs.weightUsed + data.costs.supportMaterial + data.costs.wasteMaterial}g</li>
                   </ul>
                 </div>
-                <div className="bg-white rounded-lg border p-4">
+                <div className="border rounded-lg p-4">
                   <h3 className="text-xl font-semibold mb-4">Cost Analysis</h3>
                   <ul className="space-y-2">
                     <li>Material cost: ${costs.material}</li>
@@ -142,7 +141,7 @@ const PortfolioApp = () => {
               </div>
             )}
 
-            {/* Add other tab content here */}
+            {/* Other tab content... */}
           </div>
         </div>
       </div>
