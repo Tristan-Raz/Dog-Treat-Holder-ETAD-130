@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { FileText, Image, Box, DollarSign, Lightbulb, Users } from 'lucide-react';
 
 const LoadingSpinner = () => (
-  <div className="flex justify-center items-center min-h-screen">
-    <div className="w-12 h-12 border-4 border-gray-200 rounded-full animate-spin"></div>
+  <div className="flex justify-center items-center h-screen w-screen bg-gray-100">
+    <div className="w-12 h-12 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin" />
   </div>
 );
 
