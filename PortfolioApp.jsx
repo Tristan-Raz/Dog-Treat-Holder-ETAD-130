@@ -1,52 +1,34 @@
+// src/App.jsx
 import React, { useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { VideoPreview } from './components/VideoPreview';
+import { DocumentPreview } from './components/DocumentPreview';
 
-const VideoPreview = ({ videoId }) => (
-  <div className="aspect-video w-full">
-    <iframe
-      className="w-full h-full rounded-lg"
-      src={`https://www.youtube.com/embed/${videoId}`}
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-      title="Product Demo Video"
-    />
-  </div>
-);
-
-const DocumentPreview = ({ title, type }) => (
-  <Card className="p-4 flex items-center space-x-4 hover:bg-gray-50 cursor-pointer">
-    <div className="bg-gray-100 p-3 rounded-lg">
-      {type === 'pdf' ? (
-        <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-        </svg>
-      ) : (
-        <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-      )}
-    </div>
-    <div>
-      <p className="font-medium">{title}</p>
-      <p className="text-sm text-gray-500">{type.toUpperCase()}</p>
-    </div>
-  </Card>
-);
-
-const PortfolioApp = () => {
+const App = () => {
   const [activeTab, setActiveTab] = useState("design");
 
   const documents = [
-    { title: "CAP", type: "pdf" },
-    { title: "Dog Love", type: "jpg" },
-    { title: "Dog Treat Holder", type: "pdf" },
-    { title: "Feeding", type: "jpg" },
-    { title: "Main Holder", type: "pdf" },
-    { title: "Slider Pin", type: "pdf" },
-    { title: "Sliding Mechanism", type: "pdf" },
-    { title: "Thumbs up", type: "jpg" }
+    { title: "Cap", type: "jpg", file: "/images/Cap.jpg" },
+    { title: "Dog love", type: "jpg", file: "/images/Dog love.jpg" },
+    { title: "Dog Treat Holder", type: "jpg", file: "/images/Dog Treat Holder.jpg" },
+    { title: "Feeding", type: "jpg", file: "/images/Feeding.jpg" },
+    { title: "Main Holder", type: "jpg", file: "/images/Main Holder.jpg" },
+    { title: "Slider Pin", type: "jpg", file: "/images/Slider Pin.jpg" },
+    { title: "Sliding Mechanism", type: "jpg", file: "/images/Sliding Mechanism.jpg" },
+    { title: "Thumbs up", type: "jpg", file: "/images/Thumbs up.jpg" }
   ];
+
+  const tabs = [
+    { id: 'design', label: 'Design' },
+    { id: 'photos', label: 'Photos' },
+    { id: 'analysis', label: 'Analysis' },
+    { id: 'docs', label: 'Documents' },
+    { id: 'demo', label: 'Demo' }
+  ];
+
+  // Handle image click to open in new tab
+  const handleImageClick = (image) => {
+    window.open(image.file, '_blank');
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
@@ -57,69 +39,131 @@ const PortfolioApp = () => {
           <p className="text-gray-600 mt-2">A PLA-based design optimized for service dog handlers</p>
         </div>
 
-        {/* Main Content */}
-        <Tabs defaultValue="design" className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="design">Design</TabsTrigger>
-            <TabsTrigger value="photos">Photos</TabsTrigger>
-            <TabsTrigger value="docs">Documents</TabsTrigger>
-            <TabsTrigger value="demo">Demo</TabsTrigger>
-          </TabsList>
+        {/* Navigation */}
+        <div className="grid grid-cols-5 gap-2">
+          {tabs.map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`p-2 rounded-lg transition-colors duration-200 ${
+                activeTab === tab.id ? 'bg-blue-500 text-white' : 'bg-white hover:bg-blue-50'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
 
-          <TabsContent value="design" className="bg-white rounded-lg shadow-lg p-6">
-            <h2 className="text-xl font-bold mb-4">Design Details</h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              <img
-                src="/api/placeholder/400/300"
-                alt="Design preview"
-                className="rounded-lg shadow-md w-full"
-              />
-              <div>
-                <h3 className="font-semibold mb-2">Key Features:</h3>
-                <ul className="list-disc pl-4 space-y-2">
-                  <li>Ergonomic grip design for comfortable handling</li>
-                  <li>Weather-resistant PLA material for durability</li>
-                  <li>Snap-fit mechanism for secure closure</li>
-                  <li>Reinforced attachment points for reliability</li>
-                  <li>Easy-clean surface finish for maintenance</li>
+        {/* Content */}
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          {activeTab === "design" && (
+            <div>
+              <h2 className="text-xl font-bold mb-4">Design Details</h2>
+              <div className="grid md:grid-cols-2 gap-4">
+                <img
+                  src="/images/Dog Treat Holder.jpg"
+                  alt="Design preview"
+                  className="rounded-lg shadow-md w-full h-64 object-cover cursor-pointer hover:shadow-xl transition-shadow duration-200"
+                  onClick={() => handleImageClick(documents[2])}
+                />
+                <div>
+                  <h3 className="font-semibold mb-2">Key Features:</h3>
+                  <ul className="list-disc pl-4 space-y-2">
+                    <li>Ergonomic grip design for comfortable handling</li>
+                    <li>Weather-resistant PLA material for durability</li>
+                    <li>Snap-fit mechanism for secure closure</li>
+                    <li>Reinforced attachment points for reliability</li>
+                    <li>Easy-clean surface finish for maintenance</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "photos" && (
+            <div className="grid md:grid-cols-3 gap-4">
+              {documents.map((image, index) => (
+                <div key={index} className="group relative aspect-square">
+                  <img
+                    src={image.file}
+                    alt={image.title}
+                    className="rounded-lg shadow-md w-full h-full object-cover cursor-pointer transition-all duration-200 hover:shadow-xl hover:scale-[1.02]"
+                    onClick={() => handleImageClick(image)}
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 rounded-b-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    {image.title}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {activeTab === "analysis" && (
+            <div className="space-y-6">
+              <h2 className="text-xl font-bold mb-4">Cost Analysis</h2>
+              <div className="bg-gray-50 p-4 rounded">
+                <p className="font-semibold">Material Cost (Bambu Labs PLA):</p>
+                <ul className="mt-2 space-y-1">
+                  <li>Filament used: 100g</li>
+                  <li>Cost per kg: $24.99</li>
+                  <li>Total material cost: $2.50</li>
+                  <li>Print time: 4.5 hours</li>
+                  <li>Energy consumption: 0.3 kWh</li>
+                </ul>
+              </div>
+              <div className="bg-blue-50 p-4 rounded">
+                <p className="font-semibold">Target Market Analysis:</p>
+                <ul className="mt-2 space-y-1">
+                  <li>Primary: Service dog handlers</li>
+                  <li>Secondary: Professional trainers</li>
+                  <li>Market size: 500,000+ potential users</li>
                 </ul>
               </div>
             </div>
-          </TabsContent>
+          )}
 
-          <TabsContent value="photos" className="bg-white rounded-lg shadow-lg p-6">
-            <div className="grid md:grid-cols-3 gap-4">
-              {['Dog Love', 'Feeding', 'Thumbs up'].map((title, index) => (
-                <img
-                  key={index}
-                  src="/api/placeholder/400/300"
-                  alt={title}
-                  className="rounded-lg shadow-md w-full"
-                />
-              ))}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="docs" className="bg-white rounded-lg shadow-lg p-6">
+          {activeTab === "docs" && (
             <div className="grid gap-4">
               {documents.map((doc, index) => (
-                <DocumentPreview key={index} title={doc.title} type={doc.type} />
+                <div
+                  key={index}
+                  onClick={() => handleImageClick(doc)}
+                  className="p-4 bg-white rounded-lg shadow hover:shadow-md transition-all duration-200 flex items-center space-x-4 cursor-pointer"
+                >
+                  <div className="bg-gray-100 p-3 rounded-lg">
+                    <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div className="flex-grow">
+                    <p className="font-medium">{doc.title}</p>
+                    <p className="text-sm text-gray-500">{doc.type.toUpperCase()}</p>
+                  </div>
+                  <div className="text-blue-500 hover:text-blue-600">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  </div>
+                </div>
               ))}
             </div>
-          </TabsContent>
+          )}
 
-          <TabsContent value="demo" className="bg-white rounded-lg shadow-lg p-6">
-            <h2 className="text-xl font-bold mb-4">Product Demo</h2>
-            <VideoPreview videoId="th5qBq1SDNg" />
-          </TabsContent>
-        </Tabs>
+          {activeTab === "demo" && (
+            <div>
+              <h2 className="text-xl font-bold mb-4">Product Demo</h2>
+              <VideoPreview videoId="th5qBq1SDNg" />
+            </div>
+          )}
+        </div>
 
-        {/* Analysis Section */}
+        {/* Analysis Section always visible */}
         <div className="bg-white rounded-lg shadow-lg p-6">
-          <h2 className="text-xl font-bold mb-4">Cost Analysis</h2>
+          <h2 className="text-xl font-bold mb-4">Project Overview</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-gray-50 p-4 rounded">
-              <p className="font-semibold">Material Cost (Bambu Labs PLA):</p>
+              <p className="font-semibold">Material Specifications:</p>
               <ul className="mt-2 space-y-1">
                 <li>Filament used: 100g</li>
                 <li>Cost per kg: $24.99</li>
@@ -143,4 +187,17 @@ const PortfolioApp = () => {
   );
 };
 
-export default PortfolioApp;
+export default App;
+
+// src/components/VideoPreview.jsx
+export const VideoPreview = ({ videoId }) => (
+  <div className="aspect-video w-full">
+    <iframe
+      className="w-full h-full rounded-lg shadow-lg"
+      src={`https://www.youtube.com/embed/${videoId}`}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      title="Product Demo Video"
+    />
+  </div>
+);
