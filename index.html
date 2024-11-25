@@ -88,13 +88,13 @@
 
         const documents = [
             { title: "Cap", type: "jpg", file: "/imagery/Cap.jpg", size: "356 KB", category: "part" },
-            { title: "Dog Love", type: "jpg", file: "/imagery/Dog love.jpg", size: "5.02 MB", category: "usage" },
-            { title: "Dog Treat Holder", type: "jpg", file: "/imagery/Dog Treat Holder.jpg", size: "695 KB", category: "assembly" },
-            { title: "Feeding", type: "jpg", file: "/imagery/Feeding.jpg", size: "3.67 MB", category: "usage" },
             { title: "Main Holder", type: "jpg", file: "/imagery/Main Holder.jpg", size: "612 KB", category: "part" },
             { title: "Slider Pin", type: "jpg", file: "/imagery/Slider Pin.jpg", size: "243 KB", category: "part" },
             { title: "Slider Pin Copy", type: "jpg", file: "/imagery/Slider Pin Copy.jpg", size: "235 KB", category: "part" },
-            { title: "Sliding Mechanism", type: "jpg", file: "/imagery/Sliding Mechanism.jpg", size: "292 KB", category: "assembly" },
+            { title: "Sliding Mechanism", type: "jpg", file: "/imagery/Sliding Mechanism.jpg", size: "292 KB", category: "part" },
+            { title: "Dog Treat Holder", type: "jpg", file: "/imagery/Dog Treat Holder.jpg", size: "695 KB", category: "assembly" },
+            { title: "Dog Love", type: "jpg", file: "/imagery/Dog love.jpg", size: "5.02 MB", category: "usage" },
+            { title: "Feeding", type: "jpg", file: "/imagery/Feeding.jpg", size: "3.67 MB", category: "usage" },
             { title: "Thumbs up", type: "jpg", file: "/imagery/Thumbs up.jpg", size: "Unknown", category: "usage" }
         ];
 
@@ -128,8 +128,10 @@
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
-                                className={`p-2 rounded-lg transition-colors duration-200 ${
-                                    activeTab === tab.id ? 'bg-blue-500 text-white' : 'bg-white hover:bg-blue-50'
+                                className={`p-2 rounded-lg transition-all duration-200 ${
+                                    activeTab === tab.id
+                                        ? 'bg-blue-500 text-white font-medium'
+                                        : 'bg-white hover:bg-blue-50 text-gray-700 hover:text-gray-900'
                                 }`}
                             >
                                 {tab.label}
@@ -153,11 +155,19 @@
                                         <div>
                                             <h3 className="font-semibold mb-2">Design Choices & Benefits:</h3>
                                             <ul className="list-disc pl-4 space-y-2">
-                                                <li>Ergonomic grip design optimized for one-handed operation during training sessions</li>
-                                                <li>Weather-resistant PLA material ensures durability in various environments</li>
-                                                <li>Snap-fit mechanism allows quick access while maintaining secure closure</li>
+                                                <li>Ergonomic grip design optimized for one-handed operation during
+                                                    training sessions
+                                                </li>
+                                                <li>Weather-resistant PLA material ensures durability in various
+                                                    environments (limitations below)
+                                                </li>
+                                                <li>Snap-fit mechanism allows quick access while maintaining secure
+                                                    closure
+                                                </li>
                                                 <li>Reinforced attachment points prevent wear during daily use</li>
-                                                <li>Easy-clean surface finish with rounded edges for hygiene maintenance</li>
+                                                <li>Easy-clean surface finish with rounded edges for hygiene
+                                                    maintenance
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -166,9 +176,10 @@
                                 <div>
                                     <h3 className="font-semibold mb-2">Inspiration & Sources:</h3>
                                     <ul className="list-disc pl-4 space-y-2">
-                                        <li>Inspired by professional service dog handlers' feedback on existing products</li>
-                                        <li>Design elements adapted from ergonomic pet care tools</li>
-                                        <li>Material choice based on FDA food-safe guidelines</li>
+                                        <li>Inspired by professional service dog handlers' feedback on existing
+                                            products
+                                        </li>
+                                        <li>Material choice based on mass production and ease of access</li>
                                     </ul>
                                 </div>
 
@@ -182,6 +193,9 @@
                                                 <li>Professional dog trainers handling multiple dogs</li>
                                                 <li>Users with limited hand mobility</li>
                                                 <li>Outdoor training environments</li>
+                                                <li>People who need a more robust treat holder</li>
+                                                <li>People who need one hand operation</li>
+                                                <li>Trainers for any animal, given the treat fits</li>
                                             </ul>
                                         </div>
                                         <div className="bg-red-50 p-4 rounded">
@@ -190,6 +204,10 @@
                                                 <li>Extended exposure to direct sunlight (PLA limitations)</li>
                                                 <li>High-temperature environments (>60°C)</li>
                                                 <li>Heavy impact use cases</li>
+                                                <li>Use shelf stable food for long periods between use</li>
+                                                <li>Smaller treats than the hole</li>
+                                                <li>Water resistant not water proof</li>
+                                                <li>May be troublesome for people with tremors</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -217,18 +235,16 @@
                                         <div className="bg-gray-50 p-4 rounded">
                                             <p className="font-semibold">Main Body:</p>
                                             <ul className="mt-2 space-y-1">
-                                                <li>Height: 120mm ±0.2mm</li>
+                                                <li>Height: INPUT!!!!!!! BELOW TOO</li>
                                                 <li>Width: 85mm ±0.2mm</li>
                                                 <li>Depth: 45mm ±0.2mm</li>
                                                 <li>Wall thickness: 2.5mm</li>
                                             </ul>
                                         </div>
                                         <div className="bg-gray-50 p-4 rounded">
-                                            <p className="font-semibold">Sliding Mechanism:</p>
+                                            <p className="font-semibold">Volume:</p>
                                             <ul className="mt-2 space-y-1">
-                                                <li>Track length: 65mm ±0.1mm</li>
-                                                <li>Clearance: 0.3mm</li>
-                                                <li>Pin diameter: 4mm ±0.1mm</li>
+                                                <li>INPUT VOLUME!</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -238,58 +254,77 @@
                                     <h3 className="font-semibold mb-2">Print Settings:</h3>
                                     <div className="bg-blue-50 p-4 rounded">
                                         <ul className="mt-2 space-y-1">
-                                            <li>Layer height: 0.2mm</li>
-                                            <li>Infill: 15% gyroid</li>
+                                            <li>Layer height: 0.22mm</li>
+                                            <li>Infill: 10% gyroid</li>
                                             <li>Wall count: 3</li>
                                             <li>Top/Bottom layers: 4</li>
-                                            <li>Print temperature: 215°C</li>
+                                            <li>Print temperature: 210°C</li>
                                             <li>Bed temperature: 60°C</li>
-                                            <li>Print speed: 100mm/s</li>
+                                            <li>Print speed: Default Extra Draft</li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         )}
 
-                        {activeTab === "analysis" && (
-                            <div className="space-y-6">
-                                <h2 className="text-xl font-bold mb-4">Cost & Efficiency Analysis</h2>
+{activeTab === "analysis" && (
+    <div className="space-y-6">
+        <h2 className="text-xl font-bold mb-4">Cost & Efficiency Analysis</h2>
 
-                                <div className="grid md:grid-cols-2 gap-6">
-                                    <div className="bg-gray-50 p-4 rounded">
-                                        <p className="font-semibold">Material Cost (Bambu Labs PLA):</p>
-                                        <ul className="mt-2 space-y-1">
-                                            <li>Filament used: 100g</li>
-                                            <li>Cost per kg: $24.99</li>
-                                            <li>Material cost: $2.50</li>
-                                            <li>Print time: 4.5 hours</li>
-                                            <li>Energy consumption: 0.3 kWh</li>
-                                            <li>Energy cost: $0.04 (@ $0.14/kWh)</li>
-                                        </ul>
-                                    </div>
-                                    <div className="bg-green-50 p-4 rounded">
-                                        <p className="font-semibold">Waste Reduction:</p>
-                                        <ul className="mt-2 space-y-1">
-                                            <li>Support material: 5g (minimal supports needed)</li>
-                                            <li>Material recycling: Compatible with PLA recycling</li>
-                                            <li>Packaging: Minimal, recyclable</li>
-                                        </ul>
-                                    </div>
-                                </div>
+        <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-gray-50 p-4 rounded">
+                <p className="font-semibold">Material Cost (Bambu Labs PLA):</p>
+                <ul className="mt-2 space-y-1">
+                    <li>Filament used: 81.21g</li>
+                    <li>Cost per kg: $19.99</li>
+                    <li>Material cost: $1.62</li>
+                    <li>Print time: 3.1 hours</li>
+                    <li>Alternative treat bag cost: $14.99</li>
+                </ul>
+            </div>
+            <div className="bg-blue-50 p-4 rounded">
+                <p className="font-semibold">Waste Reduction:</p>
+                <ul className="mt-2 space-y-1">
+                    <li>Support material usage: Minimal</li>
+                    <li>Layer height: 0.2mm for efficiency</li>
+                    <li>Infill: 15% for strength vs material</li>
+                    <li>Print orientation: Optimized</li>
+                    <li>Material: PLA (biodegradable)</li>
+                </ul>
+            </div>
+        </div>
 
-                                <div className="bg-yellow-50 p-4 rounded">
-                                    <p className="font-semibold">Total Production Analysis:</p>
-                                    <ul className="mt-2 space-y-1">
-                                        <li>Material cost: $2.50</li>
-                                        <li>Energy cost: $0.04</li>
-                                        <li>Labor cost (setup/removal): $1.00</li>
-                                        <li>Printer depreciation: $0.50</li>
-                                        <li><strong>Total cost per unit: $4.04</strong></li>
-                                        <li>Suggested retail price: $15.99</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        )}
+        <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-green-50 p-4 rounded">
+                <p className="font-semibold">Alternative Options:</p>
+                <div className="mt-4 space-y-3">
+                    <a
+                        href="https://www.amazon.com/ETIAL-Portable-Training-Walking-Dispenser/dp/B0BCFST719/ref=sr_1_9?sr=8-9"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-colors duration-200"
+                    >
+                        <span>Buy Treat Bag on Amazon</span>
+                        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </a>
+                    <p className="text-sm text-gray-600 mt-2">Current Price: $6.99</p>
+                    <p className="text-sm text-gray-600">Free Prime Shipping Available</p>
+                </div>
+            </div>
+            <div className="bg-yellow-50 p-4 rounded">
+                <p className="font-semibold">Total Cost Breakdown:</p>
+                <ul className="mt-2 space-y-1">
+                    <li>Material cost: $1.62</li>
+                    <li>Treat bag: $14.99</li>
+                    <li>Labor cost (setup/removal) 15min @ $6.9hr: $1.73</li>
+                    <li><strong>Total cost: $3.35</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+)}
 
                         {activeTab === "photos" && (
                             <div className="space-y-6">
@@ -303,7 +338,8 @@
                                                 className="rounded-lg shadow-md w-full h-full object-cover cursor-pointer transition-all duration-200 hover:shadow-xl hover:scale-[1.02]"
                                                 onClick={() => handleImageClick(image)}
                                             />
-                                            <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 rounded-b-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                            <div
+                                                className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 rounded-b-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                                 <div>{image.title}</div>
                                                 <div className="text-sm text-gray-300">{image.category}</div>
                                             </div>
@@ -316,14 +352,14 @@
                         {activeTab === "demo" && (
                             <div>
                                 <h2 className="text-xl font-bold mb-4">Product Demo</h2>
-                                <VideoPreview videoId="th5qBq1SDNg" />
+                                <VideoPreview videoId="th5qBq1SDNg"/>
                                 <div className="mt-4 bg-gray-50 p-4 rounded">
                                     <p className="font-semibold mb-2">Demo Highlights:</p>
                                     <ul className="list-disc pl-4 space-y-1">
                                         <li>One-handed operation demonstration</li>
                                         <li>Sliding mechanism durability test</li>
                                         <li>Treat dispensing speed test</li>
-                                        <li>Water resistance demonstration</li>
+                                        <li>Service Dog use demonstration</li>
                                     </ul>
                                 </div>
                             </div>
@@ -334,9 +370,9 @@
         );
     };
 
-    const rootElement = document.getElementById('root');
-    const root = ReactDOM.createRoot(rootElement);
-    root.render(<PortfolioApp />);
-</script>
+        const rootElement = document.getElementById('root');
+        const root = ReactDOM.createRoot(rootElement);
+        root.render(<PortfolioApp/>);
+    </script>
 </body>
 </html>
