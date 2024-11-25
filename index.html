@@ -98,6 +98,8 @@
             { title: "Thumbs up", type: "jpg", file: "/imagery/Thumbs up.jpg", size: "Unknown", category: "usage" }
         ];
 
+
+
         const tabs = [
             { id: 'design', label: 'Design Overview' },
             { id: 'details', label: 'Technical Details' },
@@ -106,7 +108,10 @@
             { id: 'demo', label: 'Demo' }
         ];
 
-        // [Previous handle click functions remain the same]
+                // Handle image click to open in new tab
+            const handleImageClick = (image) => {
+                window.open(image.file, '_blank');
+            };
 
         return (
             <div className="min-h-screen bg-gray-50 p-6">
@@ -266,7 +271,6 @@
                                         <p className="font-semibold">Waste Reduction:</p>
                                         <ul className="mt-2 space-y-1">
                                             <li>Support material: 5g (minimal supports needed)</li>
-                                            <li>Failed print rate: <2%</li>
                                             <li>Material recycling: Compatible with PLA recycling</li>
                                             <li>Packaging: Minimal, recyclable</li>
                                         </ul>
@@ -334,4 +338,5 @@
     const root = ReactDOM.createRoot(rootElement);
     root.render(<PortfolioApp />);
 </script>
+</body>
 </html>
