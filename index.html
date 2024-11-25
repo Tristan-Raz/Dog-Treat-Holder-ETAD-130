@@ -86,16 +86,18 @@
         const PortfolioApp = () => {
             const [activeTab, setActiveTab] = React.useState("design");
 
-            const documents = [
-                { title: "Cap", type: "jpg", file: "/images/Cap.jpg" },
-                { title: "Dog love", type: "jpg", file: "/images/Dog love.jpg" },
-                { title: "Dog Treat Holder", type: "jpg", file: "/images/Dog Treat Holder.jpg" },
-                { title: "Feeding", type: "jpg", file: "/images/Feeding.jpg" },
-                { title: "Main Holder", type: "jpg", file: "/images/Main Holder.jpg" },
-                { title: "Slider Pin", type: "jpg", file: "/images/Slider Pin.jpg" },
-                { title: "Sliding Mechanism", type: "jpg", file: "/images/Sliding Mechanism.jpg" },
-                { title: "Thumbs up", type: "jpg", file: "/images/Thumbs up.jpg" }
-            ];
+        const documents = [
+            { title: "Cap", type: "jpg", file: "/imagery/Cap.jpg", size: "356 KB" },
+            { title: "Dog Love", type: "jpg", file: "/imagery/Dog love.jpg", size: "5.02 MB" },
+            { title: "Dog Treat Holder", type: "jpg", file: "/imagery/Dog Treat Holder.jpg", size: "695 KB" },
+            { title: "Feeding", type: "jpg", file: "/imagery/Feeding.jpg", size: "3.67 MB" },
+            { title: "Main Holder", type: "jpg", file: "/imagery/Main Holder.jpg", size: "612 KB" },
+            { title: "Slider Pin", type: "jpg", file: "/imagery/Slider Pin.jpg", size: "243 KB" },
+            { title: "Slider Pin Copy", type: "jpg", file: "/imagery/Slider Pin Copy.jpg", size: "235 KB" },
+            { title: "Sliding Mechanism", type: "jpg", file: "/imagery/Sliding Mechanism.jpg", size: "292 KB" },
+            { title: "Thumbs up", type: "jpg", file: "/imagery/Thumbs up.jpg", size: "Unknown" }
+        ];
+
 
             const tabs = [
                 { id: 'design', label: 'Design' },
@@ -142,7 +144,7 @@
                                     <h2 className="text-xl font-bold mb-4">Design Details</h2>
                                     <div className="grid md:grid-cols-2 gap-4">
                                         <img
-                                            src="/images/Dog Treat Holder.jpg"
+                                            src="/imagery/Dog Treat Holder.jpg"
                                             alt="Design preview"
                                             className="rounded-lg shadow-md w-full h-64 object-cover cursor-pointer"
                                             onClick={() => handleImageClick(documents[2])}
