@@ -14,7 +14,8 @@ const App = () => {
     { title: "Main Holder", type: "jpg", file: "/images/Main Holder.jpg" },
     { title: "Slider Pin", type: "jpg", file: "/images/Slider Pin.jpg" },
     { title: "Sliding Mechanism", type: "jpg", file: "/images/Sliding Mechanism.jpg" },
-    { title: "Thumbs up", type: "jpg", file: "/images/Thumbs up.jpg" }
+    { title: "Thumbs up", type: "jpg", file: "/images/Thumbs up.jpg" },
+    { title: "Holder Exploded", type: "jpg", file: "/images/Holder Exploded.jpg" }
   ];
 
   const tabs = [
