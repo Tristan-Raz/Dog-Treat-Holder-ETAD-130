@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Dog Treat Holder Presentation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="p-4">
+        <button
+            id="startPresentation"
+            class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+        >
+            Start Presentation
+        </button>
+    </div>
+
+    <div id="presentationView" class="hidden fixed inset-0 bg-black bg-opacity-90 z-50">
+        <div id="presentationContainer" class="h-full w-full">
+            <div class="bg-white rounded-xl w-full max-w-6xl p-8 m-4 relative mx-auto">
+                <!-- Header -->
+                <div class="absolute top-4 right-4 flex gap-4 items-center">
+                    <div class="h-2 w-48 bg-gray-200 rounded-full overflow-hidden">
+                        <div id="progressBar" class="h-full bg-blue-500 transition-all duration-700 ease-in-out"></div>
+                    </div>
+                    <button id="toggleNotes" class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-all duration-300 hover:scale-110">
+                        <i data-feather="message-circle"></i>
+                    </button>
+                    <div id="timer" class="flex items-center gap-2">
+                        <i data-feather="clock"></i>
+                        <span>1:00</span>
+                    </div>
+                    <button id="fullscreenToggle" class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-all duration-300 hover:scale-110">
+                        <i data-feather="maximize-2"></i>
+                    </button>
+                    <button id="closePresentation" class="p-2 rounded-full bg-red-100 hover:bg-red-200 transition-all duration-300 hover:scale-110">
+                        <i data-feather="x" class="text-red-600"></i>
+                    </button>
+                </div>
+
+                <!-- Content -->
+                <div class="text-center mb-8">
+                    <h2 id="slideTitle" class="text-3xl font-bold">Service Dog Treat Holder</h2>
+                    <p id="slideSubtitle" class="text-xl text-gray-600 mt-2">Innovative Solution for Professional Handlers</p>
+                </div>
+
+                <div id="slideContent" class="mb-8"></div>
+
+                <div id="speakerNotes" class="hidden bg-yellow-50 p-4 rounded-lg mb-8">
+                    <p class="font-medium">Speaker Notes:</p>
+                    <p id="noteContent"></p>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex justify-between items-center">
+                    <button id="prevSlide" class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-all duration-300 hover:scale-110">
+                        <i data-feather="chevron-left"></i>
+                    </button>
+
+                    <div id="slideIndicators" class="flex gap-2"></div>
+
+                    <button id="nextSlide" class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-all duration-300 hover:scale-110">
+                        <i data-feather="chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements - Declare all at the start
+        const presentationView = document.getElementById('presentationView');
+        const presentationContainer = document.getElementById('presentationContainer');
+        const startButton = document.getElementById('startPresentation');
+        const closeButton = document.getElementById('closePresentation');
+        const prevButton = document.getElementById('prevSlide');
+        const nextButton = document.getElementById('nextSlide');
+        const toggleNotesButton = document.getElementById('toggleNotes');
+        const speakerNotes = document.getElementById('speakerNotes');
+        const fullscreenButton = document.getElementById('fullscreenToggle');
+        const progressBar = document.getElementById('progressBar');
+        const slideTitle = document.getElementById('slideTitle');
+        const slideSubtitle = document.getElementById('slideSubtitle');
+        const slideContent = document.getElementById('slideContent');
+        const noteContent = document.getElementById('noteContent');
+        const slideIndicators = document.getElementById('slideIndicators');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+        });
+
+const PRESENTATION_SLIDES = [
+    {
+        title: "Service Dog Treat Holder",
+        subtitle: "Innovative Solution for Professional Handlers",
+        timing: "1 minute",
+        notes: "Opening: Introduce the problem that service dog handlers face with existing treat holders.",
+        content: `
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <img src="Dog Treat Holder.jpg" alt="Product Hero Shot" class="rounded-lg shadow-xl w-full h-80 object-cover">
+                <div class="space-y-6">
+                    <p class="text-2xl">A User-Centered Solution for Professional Handlers</p>
+                    <div class="text-xl text-gray-600">
+                        <p>John Smith</p>
+                        <p>Product Designer</p>
+                        <p>November 2024</p>
+                    </div>
+                </div>
+            </div>
+        `
+    },
+    {
+        title: "Understanding Our Users",
+        subtitle: "Service Dog Handlers & Their Needs",
+        timing: "2 minutes",
+        notes: "Discuss daily challenges handlers face. Share actual user feedback.",
+        content: `
+            <div class="grid md:grid-cols-2 gap-8">
+                <img src="Dog love.jpg" alt="Handler and Dog" class="rounded-lg shadow-lg w-full object-cover h-80">
+                <div class="bg-blue-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-4">User Research Findings:</h3>
+                    <ul class="space-y-2">
+                        <li>➤ 85% need one-handed operation</li>
+                        <li>➤ 73% struggle with existing holders</li>
+                        <li>➤ 92% prioritize discretion</li>
+                        <li>➤ 68% work in public spaces</li>
+                        <li>➤ 77% need weather resistance</li>
+                    </ul>
+                </div>
+            </div>
+        `
+    },
+    {
+        title: "Design Evolution",
+        subtitle: "From Concept to Reality",
+        timing: "2 minutes",
+        notes: "Walk through the iterative design process and key improvements.",
+        content: `
+            <div class="space-y-6">
+                <div class="grid md:grid-cols-3 gap-4">
+                    <img src="Main Holder.jpg" alt="Main Component" class="rounded-lg shadow-lg w-full object-cover h-48">
+                    <img src="Slider Pin.jpg" alt="Slider Mechanism" class="rounded-lg shadow-lg w-full object-cover h-48">
+                    <img src="Cap.jpg" alt="Cap Design" class="rounded-lg shadow-lg w-full object-cover h-48">
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4">Design Iterations:</h3>
+                        <ul class="space-y-2">
+                            <li>✓ Initial prototype testing</li>
+                            <li>✓ User feedback incorporation</li>
+                            <li>✓ Mechanism refinement</li>
+                            <li>✓ Material selection process</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4">Key Improvements:</h3>
+                        <ul class="space-y-2">
+                            <li>✓ Enhanced grip texture</li>
+                            <li>✓ Optimized slider tension</li>
+                            <li>✓ Reinforced attachment points</li>
+                            <li>✓ Weather-resistant seals</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        `
+    },
+    {
+        title: "Technical Innovation",
+        subtitle: "Engineering Excellence",
+        timing: "2 minutes",
+        notes: "Focus on the innovative sliding mechanism and durability testing.",
+        content: `
+            <div class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <img src="Sliding Mechanism.jpg" alt="Sliding Mechanism" class="rounded-lg shadow-lg w-full object-cover h-64">
+                    <img src="Holder Exploded.jpg" alt="Exploded View" class="rounded-lg shadow-lg w-full object-cover h-64">
+                </div>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4">Mechanism</h3>
+                        <ul class="space-y-2">
+                            <li>• Patented slide design</li>
+                            <li>• Self-cleaning channels</li>
+                            <li>• Tactile feedback</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4">Materials</h3>
+                        <ul class="space-y-2">
+                            <li>• PLA construction</li>
+                            <li>• UV resistant</li>
+                            <li>• Food safe surface</li>
+                        </ul>
+                    </div>
+                    <div class="bg-yellow-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4">Testing</h3>
+                        <ul class="space-y-2">
+                            <li>• 10,000 cycle test</li>
+                            <li>• Drop tested</li>
+                            <li>• Weather exposure</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        `
+    },
+    {
+        title: "Manufacturing Process",
+        subtitle: "Optimized for Production",
+        timing: "2 minutes",
+        notes: "Explain the 3D printing process and cost benefits.",
+        content: `
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4">Print Settings:</h3>
+                        <ul class="space-y-2">
+                            <li>• Layer height: 0.22mm</li>
+                            <li>• Infill: 10% gyroid</li>
+                            <li>• Wall count: 3</li>
+                            <li>• Print time: 3.1 hours</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4">Production Stats:</h3>
+                        <ul class="space-y-2">
+                            <li>• Material cost: $1.62</li>
+                            <li>• Energy usage: 0.3 kWh</li>
+                            <li>• Success rate: 98.5%</li>
+                            <li>• Quality control: 100%</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-between">
+                    <img src="Main Holder.jpg" alt="Manufacturing" class="rounded-lg shadow-lg w-full object-cover h-64 mb-4">
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <ul class="space-y-2">
+                            <li>✓ Sustainable production</li>
+                            <li>✓ Minimal waste</li>
+                            <li>✓ Local manufacturing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        `
+    },
+    {
+        title: "Real World Testing",
+        subtitle: "Performance & User Feedback",
+        timing: "2 minutes",
+        notes: "Share real user testimonials and testing results.",
+        content: `
+            <div class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <img src="Feeding.jpg" alt="Usage Demo" class="rounded-lg shadow-lg w-full object-cover h-64">
+                    <img src="Thumbs up.jpg" alt="User Feedback" class="rounded-lg shadow-lg w-full object-cover h-64">
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4">User Feedback:</h3>
+                        <ul class="space-y-2">
+                            <li>"Perfect for public work" - Sarah K.</li>
+                            <li>"Finally, true one-handed use" - Mike R.</li>
+                            <li>"Game changer for training" - Lisa M.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4">Testing Results:</h3>
+                        <ul class="space-y-2">
+                            <li>✓ 98% user satisfaction</li>
+                            <li>✓ 45% faster treat access</li>
+                            <li>• Testing volunteers</li>
+                            <li>• Design review participants</li>
+                            <li>• Manufacturing partners</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        `
+    },
+    {
+        title: "References & Sources",
+        subtitle: "Research & Inspiration",
+        timing: "1 minute",
+        notes: "Acknowledge sources and contributions.",
+        content: `
+            <div class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4">Design Inspiration:</h3>
+                        <ul class="space-y-2">
+                            <li>• Professional handler interviews</li>
+                            <li>• Service dog training manuals</li>
+                            <li>• Existing product analysis</li>
+                            <li>• Ergonomic design principles</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4">Technical References:</h3>
+                        <ul class="space-y-2">
+                            <li>• PLA material specifications</li>
+                            <li>• 3D printing best practices</li>
+                            <li>• FDA food contact guidelines</li>
+                            <li>• Accessibility standards</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-green-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-4">Acknowledgments:</h3>
+                    <ul class="space-y-2">
+                        <li>• Service dog community feedback</li>
+                        <li>• Testing volunteers</li>
+                        <li>• Design review participants</li>
+                        <li>• Manufacturing partners</li>
+                    </ul>
+                </div>
+            </div>
+        `
+    }
+];
+
+
+
+        let currentSlide = 0;
+        let timeLeft;
+        let timer;
+
+        function updateSlide() {
+            const slide = PRESENTATION_SLIDES[currentSlide];
+            slideTitle.textContent = slide.title;
+            slideSubtitle.textContent = slide.subtitle;
+            slideContent.innerHTML = slide.content;
+            noteContent.textContent = slide.notes;
+            progressBar.style.width = `${((currentSlide + 1) / PRESENTATION_SLIDES.length) * 100}%`;
+            updateSlideIndicators();
+            resetTimer(slide.timing);
+            feather.replace();
+        }
+
+        function updateSlideIndicators() {
+            slideIndicators.innerHTML = '';
+            PRESENTATION_SLIDES.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = `w-3 h-3 rounded-full transition-all duration-300 ${
+                    currentSlide === index ? 'bg-blue-500 scale-125' : 'bg-gray-300'
+                }`;
+                slideIndicators.appendChild(dot);
+            });
+        }
+
+        function resetTimer(timing) {
+            clearInterval(timer);
+            const minutes = parseInt(timing.split(' ')[0]);
+            timeLeft = minutes * 60;
+            updateTimerDisplay();
+            startTimer();
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            const timerElement = document.querySelector('#timer span');
+            timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            timerElement.className = timeLeft <= 30 ? 'text-red-500 animate-pulse' : '';
+        }
+
+        function startTimer() {
+            timer = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    updateTimerDisplay();
+                }
+            }, 1000);
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                presentationContainer.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Event Listeners
+        startButton.addEventListener('click', () => {
+            presentationView.classList.remove('hidden');
+            updateSlide();
+        });
+
+        closeButton.addEventListener('click', () => {
+            presentationView.classList.add('hidden');
+            clearInterval(timer);
+        });
+
+        prevButton.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + PRESENTATION_SLIDES.length) % PRESENTATION_SLIDES.length;
+            updateSlide();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % PRESENTATION_SLIDES.length;
+            updateSlide();
+        });
+
+        toggleNotesButton.addEventListener('click', () => {
+            speakerNotes.classList.toggle('hidden');
+        });
+
+        fullscreenButton.addEventListener('click', toggleFullscreen);
+
+        document.addEventListener('fullscreenchange', () => {
+            const icon = fullscreenButton.querySelector('i');
+            if (document.fullscreenElement) {
+                icon.setAttribute('data-feather', 'minimize-2');
+            } else {
+                icon.setAttribute('data-feather', 'maximize-2');
+            }
+            feather.replace();
+        });
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            if (!presentationView.classList.contains('hidden')) {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    nextButton.click();
+                } else if (e.key === 'ArrowLeft') {
+                    prevButton.click();
+                } else if (e.key === 'Escape') {
+                    closeButton.click();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

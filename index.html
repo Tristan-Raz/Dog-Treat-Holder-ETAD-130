@@ -104,9 +104,11 @@
             { title: "Main Height Caliper", file: "imagery/Main Height Caliper.jpg", size: "1.5 MB", category: "part"},
             { title: "Slider Length Caliper", file: "imagery/Slider Length Caliper.jpg", size: "3.1 MB", category: "part"},
             { title: "Slider Width Caliper", file: "imagery/Slider Width Caliper.jpg", size: "2.9 MB", category: "part"},
-            // { title: "Slider Pin Diameter Caliper", file: "imagery/Slider Pin Diameter Caliper.jpg", size: "2.7 MB", category: "part"},
-            // { title: "Slider Pin Length Caliper", file: "imagery/Slider Pin Length Caliper.jpg", size: "2.5 MB", category: "part"},
-            // { title: "Slider Pin Width Caliper", file: "imagery/Slider Pin Width Caliper.jpg", size: "2.3 MB", category: "part"},
+            { title: "Broken Handle", file: "imagery/Broken Handle.jpg", size: "2.7 MB", category: "part"},
+            { title: "Broken Lid", file: "imagery/Broken Lid.jpg", size: "Unknown", category: "part" },
+            { title: "Broken Opening", file: "imagery/Broken Opening.jpg", size: "Unknown", category: "part" },
+            { title: "Build Plate", file: "imagery/Build plate.jpg", size: "Unknown", category: "part" },
+            { title: "Waste Image", file: "imagery/Waste Image.jpg", size: "Unknown", category: "part" },
             { title: "Dog Love", type: "jpg", file: "/imagery/Dog love.jpg", size: "5.02 MB", category: "usage" },
             { title: "Feeding", type: "jpg", file: "/imagery/Feeding.jpg", size: "3.67 MB", category: "usage" },
             { title: "Thumbs up", type: "jpg", file: "/imagery/Thumbs up.jpg", size: "Unknown", category: "usage" }
@@ -280,25 +282,49 @@
                                 <h2 className="text-xl font-bold mb-4">Technical Details</h2>
 
                                 <div>
-                                    <h3 className="font-semibold mb-2">Dimensions & Measurementsv(caliper):</h3>
-                                    <div className="grid md:grid-cols-2 gap-4">
-                                        <div className="bg-gray-50 p-4 rounded">
-                                            <p className="font-semibold">Averages of Main Holder Dimension Printed:</p>
-                                            <ul className="mt-2 space-y-1">
-                                                <li>Height printed: 76.1mm</li>
-                                                <li>Diameter printed: 56.8mm</li>
-                                                <li>Volume: 138.55cm^3</li>
-                                                <li>Margin of Error: >1%-1%</li>
-
-                                            </ul>
-                                        </div>
-                                        <div className="bg-gray-50 p-4 rounded">
-                                            <p className="font-semibold">Averages of Main Holder Dimension Simulated:</p>
-                                            <ul className="mt-2 space-y-1">
-                                                <li>Height Simulated: 76.2mm</li>
-                                                <li>Diameter Simulated: 57.15mm</li>
-                                            </ul>
-                                        </div>
+                                    <h3 className="font-semibold mb-2">Dimensions & Measurements (caliper):</h3>
+                                    <div className="overflow-x-auto bg-gray-50 p-4 rounded shadow-md">
+                                        <table
+                                            className="w-full text-sm text-left border-collapse border border-gray-300">
+                                            <thead className="bg-blue-500 text-white">
+                                            <tr>
+                                                <th className="px-4 py-2 border border-gray-300">Dimension
+                                                    (Sim/Actual)
+                                                </th>
+                                                <th className="px-4 py-2 border border-gray-300">Main Body</th>
+                                                <th className="px-4 py-2 border border-gray-300">Lid</th>
+                                                <th className="px-4 py-2 border border-gray-300">Slider Mechanism</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr className="odd:bg-white even:bg-gray-100">
+                                                <td className="px-4 py-2 border border-gray-300 font-medium">Length</td>
+                                                <td className="px-4 py-2 border border-gray-300">57.1 / 56.8</td>
+                                                <td className="px-4 py-2 border border-gray-300">57.15 / 56.8</td>
+                                                <td className="px-4 py-2 border border-gray-300">64.19 / 63.7</td>
+                                            </tr>
+                                            <tr className="odd:bg-white even:bg-gray-100">
+                                                <td className="px-4 py-2 border border-gray-300 font-medium">Width</td>
+                                                <td className="px-4 py-2 border border-gray-300">57.1 / 56.8</td>
+                                                <td className="px-4 py-2 border border-gray-300">57.15 / 56.8</td>
+                                                <td className="px-4 py-2 border border-gray-300">30.93 / 30.9</td>
+                                            </tr>
+                                            <tr className="odd:bg-white even:bg-gray-100">
+                                                <td className="px-4 py-2 border border-gray-300 font-medium">Height</td>
+                                                <td className="px-4 py-2 border border-gray-300">76.2 / 76.1</td>
+                                                <td className="px-4 py-2 border border-gray-300">9.53 / 9.4</td>
+                                                <td className="px-4 py-2 border border-gray-300">3.57 / 3.6</td>
+                                            </tr>
+                                            <tr className="odd:bg-white even:bg-gray-100">
+                                                <td className="px-4 py-2 border border-gray-300 font-medium">Margin of
+                                                    Error
+                                                </td>
+                                                <td className="px-4 py-2 border border-gray-300">&gt;1%</td>
+                                                <td className="px-4 py-2 border border-gray-300">1%</td>
+                                                <td className="px-4 py-2 border border-gray-300">&gt;1%</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
 

@@ -16,6 +16,7 @@ const App = () => {
     { title: "Sliding Mechanism", type: "jpg", file: "/images/Sliding Mechanism.jpg" },
     { title: "Thumbs up", type: "jpg", file: "/images/Thumbs up.jpg" },
     { title: "Holder Exploded", type: "jpg", file: "/images/Holder Exploded.jpg" }
+
   ];
 
   const tabs = [
