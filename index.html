@@ -345,6 +345,65 @@
                                 </div>
                             </div>
                         )}
+{activeTab === "analysis" && (
+    <div className="space-y-6">
+        <h2 className="text-xl font-bold mb-4">Cost & Efficiency Analysis</h2>
+
+        <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-gray-50 p-4 rounded">
+                <p className="font-semibold">Material Cost (Bambu Labs PLA):</p>
+                <ul className="mt-2 space-y-1">
+                    <li>Filament used: 81.21g</li>
+                    <li>Cost per kg: $19.99</li>
+                    <li>Material cost: $1.62</li>
+                    <li>Print time: 3.1 hours</li>
+                    <li>Alternative treat bag cost: $6.99</li>
+                </ul>
+            </div>
+            <div className="bg-blue-50 p-4 rounded">
+                <p className="font-semibold">Waste Reduction:</p>
+                <ul className="mt-2 space-y-1">
+                    <li>Waste = .66g/57.08g = 1.15%</li>
+                    <li>Layer height: 0.28mm for efficiency</li>
+                    <li>Infill: 10% for strength vs material</li>
+                    <li>Print orientation: Optimized</li>
+                    <li>Material: PLA</li>
+                </ul>
+            </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-green-50 p-4 rounded">
+                <p className="font-semibold">Alternative Options:</p>
+                <div className="mt-4 space-y-3">
+                    <a
+                        href="https://www.amazon.com/ETIAL-Portable-Training-Walking-Dispenser/dp/B0BCFST719/ref=sr_1_9?sr=8-9"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-colors duration-200"
+                    >
+                        <span>Buy Treat Bag on Amazon</span>
+                        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </a>
+                    <p className="text-sm text-gray-600 mt-2">Current Price: $6.99</p>
+                    <p className="text-sm text-gray-600">Free Prime Shipping Available</p>
+                </div>
+            </div>
+            <div className="bg-yellow-50 p-4 rounded">
+                <p className="font-semibold">Total Cost Breakdown:</p>
+                <ul className="mt-2 space-y-1">
+                    <li>Material cost: $1.62</li>
+                    <li>Treat bag: $6.99</li>
+                    <li>Labor cost (setup/removal) 15min @ $6.9hr: $1.73</li>
+                    <li><strong>Total cost print: $3.35</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+)}
+
 
 {activeTab === "reflection" && (
     <div className="space-y-6">
