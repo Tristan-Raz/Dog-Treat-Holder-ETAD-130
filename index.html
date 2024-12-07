@@ -346,68 +346,24 @@
                             </div>
                         )}
 
-{activeTab === "analysis" && (
-    <div className="space-y-6">
-        <h2 className="text-xl font-bold mb-4">Cost & Efficiency Analysis</h2>
-
-        <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-gray-50 p-4 rounded">
-                <p className="font-semibold">Material Cost (Bambu Labs PLA):</p>
-                <ul className="mt-2 space-y-1">
-                    <li>Filament used: 81.21g</li>
-                    <li>Cost per kg: $19.99</li>
-                    <li>Material cost: $1.62</li>
-                    <li>Print time: 3.1 hours</li>
-                    <li>Alternative treat bag cost: $6.99</li>
-                </ul>
-            </div>
-            <div className="bg-blue-50 p-4 rounded">
-                <p className="font-semibold">Waste Reduction:</p>
-                <ul className="mt-2 space-y-1">
-                    <li>Waste = .66g/57.08g = 1.15%</li>
-                    <li>Layer height: 0.28mm for efficiency</li>
-                    <li>Infill: 10% for strength vs material</li>
-                    <li>Print orientation: Optimized</li>
-                    <li>Material: PLA</li>
-                </ul>
-            </div>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-green-50 p-4 rounded">
-                <p className="font-semibold">Alternative Options:</p>
-                <div className="mt-4 space-y-3">
-                    <a
-                        href="https://www.amazon.com/ETIAL-Portable-Training-Walking-Dispenser/dp/B0BCFST719/ref=sr_1_9?sr=8-9"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-colors duration-200"
-                    >
-                        <span>Buy Treat Bag on Amazon</span>
-                        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
-                    </a>
-                    <p className="text-sm text-gray-600 mt-2">Current Price: $6.99</p>
-                    <p className="text-sm text-gray-600">Free Prime Shipping Available</p>
-                </div>
-            </div>
-            <div className="bg-yellow-50 p-4 rounded">
-                <p className="font-semibold">Total Cost Breakdown:</p>
-                <ul className="mt-2 space-y-1">
-                    <li>Material cost: $1.62</li>
-                    <li>Treat bag: $6.99</li>
-                    <li>Labor cost (setup/removal) 15min @ $6.9hr: $1.73</li>
-                    <li><strong>Total cost print: $3.35</strong></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-)}
 {activeTab === "reflection" && (
     <div className="space-y-6">
         <h2 className="text-xl font-bold mb-4">Reflection</h2>
 
+        {/* Introduction */}
+        <div>
+            <h3 className="font-semibold mb-2">Introduction:</h3>
+            <p>
+                Existing treat holder solutions often require two-handed operation, lack durability, and come at a prohibitive price point.
+                Commercial products provide limited options for customization, making them less suited for professional service dog handlers.
+            </p>
+            <p>
+                The Handi-Treat Holder is designed to address these issues by prioritizing one-handed operation, durability, cost-efficiency,
+                and modular customization for various needs.
+            </p>
+        </div>
+
+        {/* Improvements Made */}
         <div>
             <h3 className="font-semibold mb-2">Improvements Made:</h3>
             <ul className="list-disc pl-4 space-y-2">
@@ -426,6 +382,7 @@
             </ul>
         </div>
 
+        {/* Photos of Failures and Redesigns */}
         <div>
             <h3 className="font-semibold mb-2">Photos of Failures and Redesigns:</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -450,47 +407,51 @@
             </div>
         </div>
 
+        {/* Challenges Faced */}
         <div>
             <h3 className="font-semibold mb-2">Challenges Faced:</h3>
             <ul className="list-disc pl-4 space-y-2">
-                <li>
-                    Fine-tuning print tolerances required significant trial and error due to printer variability, especially with the margin of error.
-                </li>
-                <li>
-                    Ensuring structural integrity while maintaining a lightweight and compact design was a delicate balance.
-                </li>
-                <li>
-                    Optimizing for print time while also allowing for customization and usability.
-                </li>
+                <li>The slider opening was initially too narrow and required adjustments.</li>
+                <li>The belt holder needed redesigning for better support.</li>
+                <li>Increased infill was necessary for improved structural support.</li>
+                <li>The pin placement needed correction to improve usability.</li>
+                <li>Balancing print time with customization and usability presented challenges.</li>
             </ul>
         </div>
 
+        {/* Future Improvements */}
         <div>
             <h3 className="font-semibold mb-2">Future Improvements:</h3>
             <ul className="list-disc pl-4 space-y-2">
-                <li>
-                    Explore alternative materials such as PETG or ABS to improve heat resistance and impact strength.
-                </li>
-                <li>
-                    Implement UV-resistant coatings for outdoor use to extend product lifespan.
-                </li>
-                <li>
-                    Test additional designs for the slider mechanism to further enhance ease of use and reliability. For example, adding a rubber band on the bottom of the container to assist with the sliding mechanism.
-                </li>
-                <li>
-                    Collect user feedback from a broader audience to refine functionality and usability.
-                </li>
+                <li>Explore alternative materials such as PETG or ABS to improve heat resistance and impact strength.</li>
+                <li>Implement UV-resistant coatings for outdoor use to extend product lifespan.</li>
+                <li>Test additional designs for the slider mechanism to further enhance ease of use and reliability. For example, adding a rubber band on the bottom of the container to assist with the sliding mechanism.</li>
+                <li>Collect user feedback from a broader audience to refine functionality and usability.</li>
             </ul>
         </div>
 
+        {/* Key Takeaways */}
         <div>
             <h3 className="font-semibold mb-2">Key Takeaways:</h3>
             <p>
-                This project has been a valuable learning experience, showcasing the importance of iterative design and testing. The challenges faced have deepened my understanding of 3D printing constraints and user-focused product development. Moving forward, I aim to prioritize modularity, material selection, and usability enhancements to create a more robust and efficient treat holder for those in need.
+                This project has been a valuable learning experience, showcasing the importance of iterative design and testing. The challenges faced have deepened my understanding of 3D printing constraints and user-focused product development.
             </p>
+            <p>
+                Moving forward, I aim to prioritize modularity, material selection, and usability enhancements to create a more robust and efficient treat holder for those in need.
+            </p>
+        </div>
+
+        {/* Acknowledgments */}
+        <div>
+            <h3 className="font-semibold mb-2">Acknowledgments:</h3>
+            <p>
+                Thank you for your attention and support. This project was made possible with feedback from professional handlers and inspiration from real-world challenges faced by service dog handlers.
+            </p>
+            <p>Designed and developed by Tristan Razote at Berea College, December 2024.</p>
         </div>
     </div>
 )}
+
 
 
 
