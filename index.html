@@ -121,6 +121,7 @@
             { id: 'design', label: 'Design Overview' },
             { id: 'details', label: 'Technical Details' },
             { id: 'analysis', label: 'Analysis' },
+            { id: 'reflection', label: 'Reflection' }, // New Reflection Tab
             { id: 'photos', label: 'Gallery' },
             { id: 'demo', label: 'Demo' }
         ];
@@ -403,6 +404,70 @@
         </div>
     </div>
 )}
+                        {activeTab === "reflection" && (
+    <div className="space-y-6">
+        <h2 className="text-xl font-bold mb-4">Reflection</h2>
+
+        <div>
+            <h3 className="font-semibold mb-2">Improvements Made:</h3>
+            <ul className="list-disc pl-4 space-y-2">
+                <li>
+                    Adjusted design to have belt handle build from the build plate instead of using supports, ensuring successful completion of the belt handle.
+                </li>
+                <li>
+                    Increased tolerance allowances for the slider mechanism to eliminate majority of the friction and enhance smoothness.
+                </li>
+                <li>
+                    Reinforced thin walls with more infill and increased wall thickness in stress-prone areas.
+                </li>
+                <li>
+                    Enhanced design modularity, allowing easier replacement of parts that may wear out over time.
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 className="font-semibold mb-2">Challenges Faced:</h3>
+            <ul className="list-disc pl-4 space-y-2">
+                <li>
+                    Fine-tuning print tolerances required significant trial and error due to printer variability, especially with the margin of error.
+                </li>
+                <li>
+                    Ensuring structural integrity while maintaining a lightweight and compact design was a delicate balance.
+                </li>
+                <li>
+                    Optimizing for print time while also having customization and usability.
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 className="font-semibold mb-2">Future Improvements:</h3>
+            <ul className="list-disc pl-4 space-y-2">
+                <li>
+                    Explore alternative materials such as PETG or ABS to improve heat resistance and impact strength.
+                </li>
+                <li>
+                    Implement UV-resistant coatings for outdoor use to extend product lifespan.
+                </li>
+                <li>
+                    Test additional designs for the slider mechanism to further enhance ease of use and reliability. For example, adding the rubber band on the bottom of the container to help with the sliding mechanism.
+                </li>
+                <li>
+                    Collect user feedback from a broader audience to refine functionality and usability.
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 className="font-semibold mb-2">Key Takeaways:</h3>
+            <p>
+                This project has been a valuable learning experience, showcasing the importance of iterative design and testing. The challenges faced have deepened my understanding of 3D printing constraints and user-focused product development. Moving forward, I aim to prioritize modularity, material selection, and usability enhancements to create a more robust and efficient treat holder for those in need.
+            </p>
+        </div>
+    </div>
+)}
+
 
                         {activeTab === "photos" && (
                             <div className="space-y-6">
