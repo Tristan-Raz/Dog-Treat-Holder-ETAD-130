@@ -404,7 +404,7 @@
         </div>
     </div>
 )}
-                        {activeTab === "reflection" && (
+{activeTab === "reflection" && (
     <div className="space-y-6">
         <h2 className="text-xl font-bold mb-4">Reflection</h2>
 
@@ -412,10 +412,10 @@
             <h3 className="font-semibold mb-2">Improvements Made:</h3>
             <ul className="list-disc pl-4 space-y-2">
                 <li>
-                    Adjusted design to have belt handle build from the build plate instead of using supports, ensuring successful completion of the belt handle.
+                    Adjusted design to have the belt handle built from the build plate instead of using supports, ensuring successful completion of the belt handle.
                 </li>
                 <li>
-                    Increased tolerance allowances for the slider mechanism to eliminate majority of the friction and enhance smoothness.
+                    Increased tolerance allowances for the slider mechanism to eliminate the majority of the friction and enhance smoothness.
                 </li>
                 <li>
                     Reinforced thin walls with more infill and increased wall thickness in stress-prone areas.
@@ -424,6 +424,30 @@
                     Enhanced design modularity, allowing easier replacement of parts that may wear out over time.
                 </li>
             </ul>
+        </div>
+
+        <div>
+            <h3 className="font-semibold mb-2">Photos of Failures and Redesigns:</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {["Broken Handle", "Broken Lid", "Broken Opening"].map((itemTitle, index) => {
+                    const image = documents.find(doc => doc.title === itemTitle);
+                    return (
+                        <div key={index} className="group relative aspect-square">
+                            <img
+                                src={image.file}
+                                alt={image.title}
+                                className="rounded-lg shadow-md w-full h-full object-cover cursor-pointer transition-all duration-200 hover:shadow-xl hover:scale-[1.02]"
+                                onClick={() => handleImageClick(image)}
+                            />
+                            <div
+                                className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 rounded-b-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                <div>{image.title}</div>
+                                <div className="text-sm text-gray-300">{image.category}</div>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
         </div>
 
         <div>
@@ -436,7 +460,7 @@
                     Ensuring structural integrity while maintaining a lightweight and compact design was a delicate balance.
                 </li>
                 <li>
-                    Optimizing for print time while also having customization and usability.
+                    Optimizing for print time while also allowing for customization and usability.
                 </li>
             </ul>
         </div>
@@ -451,7 +475,7 @@
                     Implement UV-resistant coatings for outdoor use to extend product lifespan.
                 </li>
                 <li>
-                    Test additional designs for the slider mechanism to further enhance ease of use and reliability. For example, adding the rubber band on the bottom of the container to help with the sliding mechanism.
+                    Test additional designs for the slider mechanism to further enhance ease of use and reliability. For example, adding a rubber band on the bottom of the container to assist with the sliding mechanism.
                 </li>
                 <li>
                     Collect user feedback from a broader audience to refine functionality and usability.
@@ -467,6 +491,7 @@
         </div>
     </div>
 )}
+
 
 
                         {activeTab === "photos" && (
